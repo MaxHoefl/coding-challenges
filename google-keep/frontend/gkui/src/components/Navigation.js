@@ -1,44 +1,63 @@
 import NavigationItem from "./NavigationItem";
 import {MdLightbulbOutline, MdOutlineArchive, MdOutlineModeEdit, MdOutlineNotifications} from "react-icons/md";
-import {BsTrash} from "react-icons/bs";
 import {useState} from "react";
+import {BsTrash} from "react-icons/bs";
 
-function Navigation() {
+function navClassList(isCollapsed) {
+    const classList = ["transition-all", "duration-100", "ease-in-out"]
+    if (isCollapsed) {
+        classList.push("min-w-12")
+    }
+    else {
+        classList.push("min-w-64")
+    }
+    return classList.join(" ")
+}
+
+function Navigation({ isCollapsed }) {
     const [activeItem, setActiveItem] = useState("notes")
     const handleItemClick = (itemName) => {
         setActiveItem(itemName)
     }
-
-    return <div className="min-w-64">
+    return <div className={navClassList(isCollapsed)}>
         <NavigationItem
-                onClick={() => handleItemClick("notes")}
-                isActive={activeItem === "notes"}>
-            <MdLightbulbOutline className="mr-4 text-xl" />
-            Notes
+            isCollapsed={isCollapsed}
+            isActive={activeItem === "notes"}
+            onClick={() => handleItemClick("notes")}
+            title="Notes">
+            <MdLightbulbOutline className="text-2xl" />
         </NavigationItem>
 
         <NavigationItem
-                onClick={() => handleItemClick("reminders")}
-                isActive={activeItem === "reminders"}>
-            <MdOutlineNotifications className="mr-4 text-xl" />Reminders
+            isCollapsed={isCollapsed}
+            isActive={activeItem === "reminders"}
+            onClick={() => handleItemClick("reminders")}
+            title="Reminders">
+            <MdOutlineNotifications className="text-2xl" />
         </NavigationItem>
 
         <NavigationItem
-                onClick={() => handleItemClick("labels")}
-                isActive={activeItem === "labels"}>
-            <MdOutlineModeEdit className="mr-4 text-xl" />Edit labels
+            isCollapsed={isCollapsed}
+            isActive={activeItem === "labels"}
+            onClick={() => handleItemClick("labels")}
+            title="Labels">
+            <MdOutlineModeEdit className="text-2xl" />
         </NavigationItem>
 
         <NavigationItem
-                onClick={() => handleItemClick("archive")}
-                isActive={activeItem === "archive"}>
-            <MdOutlineArchive className="mr-4 text-xl" />Archive
+            isCollapsed={isCollapsed}
+            isActive={activeItem === "archive"}
+            onClick={() => handleItemClick("archive")}
+            title="Archive">
+            <MdOutlineArchive className="text-2xl" />
         </NavigationItem>
 
         <NavigationItem
-                onClick={() => handleItemClick("bin")}
-                isActive={activeItem === "bin"}>
-            <BsTrash className="mr-4 text-xl" />Bin
+            isCollapsed={isCollapsed}
+            isActive={activeItem === "bin"}
+            onClick={() => handleItemClick("bin")}
+            title="Bin">
+            <BsTrash className="text-2xl" />
         </NavigationItem>
     </div>
 }

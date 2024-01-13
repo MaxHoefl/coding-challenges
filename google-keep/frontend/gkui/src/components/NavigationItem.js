@@ -1,14 +1,32 @@
-function NavigationItem({children, onClick, isActive}) {
+import {findAllByDisplayValue} from "@testing-library/react";
+import {MdLightbulbOutline} from "react-icons/md";
+
+function navItemClassList(isCollapsed, isActive) {
+    const bgColorPrimary = "bg-yellow-200"
+    const bgColorSecondary = "bg-gray-100"
     let classList = [
         "flex", "items-center",
-        "hover:bg-gray-200", "active:bg-yellow-300",
-        "pl-9", "py-3",
-        "rounded-tr-full", "rounded-br-full", "bg-yellow-300"
+        "text-md",
+        "py-3",
+        bgColorPrimary, `hover:${bgColorSecondary}`, `active:${bgColorPrimary}`
     ]
-    let classString = isActive ?
-        classList.filter(s => s !== "hover:bg-gray-200").join(" ") :
-        classList.filter(s => s !== "bg-yellow-300").join(" ")
-    return <div onClick={onClick} className={classString}>{children}</div>
+    if (isCollapsed) {
+        classList.push("ml-6", "px-3","rounded-full")
+    }
+    else {
+        classList.push("pl-9", bgColorPrimary, `hover:${bgColorSecondary}`, `active:${bgColorPrimary}`, "rounded-tr-full", "rounded-br-full")
+    }
+    return isActive ?
+        classList.filter(s => s !== `hover:${bgColorSecondary}`).join(" ") :
+        classList.filter(s => s !== bgColorPrimary).join(" ")
+}
+
+function NavigationItem({children, title, onClick, isActive, isCollapsed}) {
+    const navTextClass = isCollapsed? "opacity-0": "opacity-100 ml-5"
+    return (<div className={navItemClassList(isCollapsed, isActive)} onClick={onClick}>
+        {children}
+        <span className={`transition-opacity duration-300 ${navTextClass}`}>{isCollapsed? "": title}</span>
+    </div>)
 }
 
 export default NavigationItem
