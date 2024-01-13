@@ -1,9 +1,10 @@
 import Layout from "../components/Layout";
+import NotesList from "../components/NotesList";
 
 function NotesPage() {
     return (
         <Layout>
-            Main content
+            <NotesList></NotesList>
         </Layout>
     )
 }
