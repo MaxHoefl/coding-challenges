@@ -1,2 +1,18 @@
 GET http://localhost:8080/notes
 Accept: application/json
+
+### Send POST request with json body
+PUT http://localhost:8080/notes/1
+Content-Type: application/json
+
+{
+  "id": "1",
+  "title": "walk the dog again",
+  "content": "lorem ipsum",
+  "createDateTimeUtc": "2024-01-15T14:01",
+  "lastEditDateTimeUtc": "2024-01-15T14:02",
+  "backgroundColor": "#ff918a",
+  "labels": [
+    "label1"
+  ]
+}

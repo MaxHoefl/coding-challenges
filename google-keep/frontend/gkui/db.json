@@ -1,6 +1,27 @@
 {
   "notes": [
-    { "id": "1", "title": "walk the dog", "content": "lorem ipsum" },
-    { "id": "2", "title": "run errands", "content": "lorem ipsum" }
+    {
+      "id": "1",
+      "title": "walk the dog 4",
+      "content": "lorem ipsum",
+      "createDateTimeUtc": "2024-01-15T14:01",
+      "lastEditDateTimeUtc": "2024-01-15T14:02",
+      "backgroundColor": "#ff918a",
+      "labels": [
+        "label1"
+      ]
+    },
+    {
+      "id": "2",
+      "title": "run errands 2",
+      "content": "lorem ipsum asd",
+      "createDateTimeUtc": "2024-01-15T14:01",
+      "lastEditDateTimeUtc": "2024-01-15T14:02",
+      "backgroundColor": "#b3ffcf",
+      "labels": [
+        "label1",
+        "label2"
+      ]
+    }
   ]
 }

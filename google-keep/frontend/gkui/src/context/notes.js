@@ -1,4 +1,4 @@
-import {createContext, useEffect, useState} from "react";
+import {createContext, useCallback, useEffect, useState} from "react";
 import axios from "axios";
 
 const NotesContext = createContext()
@@ -13,6 +13,14 @@ function Provider({ children }) {
         setNotes(response.data)
     }
 
+    const updateNote = useCallback((updatedNote) => {
+        setNotes((prevNotes) => {
+            return prevNotes.map((note) =>
+                note.id === updatedNote.id ? { ...note, ...updatedNote } : note
+            );
+        });
+    }, []);
+
     useEffect(() => {
         fetchNotes()
     }, [])
@@ -24,7 +32,7 @@ function Provider({ children }) {
         notes
     }
     return (
-        <NotesContext.Provider value={noteContext}>
+        <NotesContext.Provider value={{ notes, updateNote }}>
             {children}
         </NotesContext.Provider>
     )
